@@ -41,10 +41,11 @@ def generate_prompt():
     return response
     
 def main():
+    count = int(input("СКОЛЬКО: "))
     if not os.path.exists("data"):
         os.makedirs("data")
 
-    for i in range(10): 
+    for i in range(count): 
         print(f"Generating data point {i+1}")
         
         prompt = generate_prompt() 
