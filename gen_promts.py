@@ -14,27 +14,27 @@ def generate_response(prompt):
 
       
 def generate_prompt():
-    prompt = """Ты — старший разработчик, и даешь задание своему помощнику, который только учится программировать. 
-Помощник умеет выполнять следующие команды:
+    prompt = """You are a senior developer, and you are giving a task to your assistant who is just learning to program. 
+Your assistant can execute the following commands:
 
-1. "google": найти что-то в Google. 
-    Пример: "google", args: {"input": "лучшие рецепты пиццы"}
+1. "google": Search for something on Google.
+    Example: "google", args: {"input": "best pizza recipes"}
 
-2. "browse_website": найти информацию на сайте.  
-    Пример: "browse_website", args: {"url": "https://wikipedia.org", "question": "Когда основали Google?"}
+2. "browse_website": Find information on a website.
+    Example: "browse_website", args: {"url": "https://wikipedia.org", "question": "When was Google founded?"}
 
-3. "write_to_file": записать текст в файл. 
-    Пример: "write_to_file", args: {"file": "ответ.txt", "text": "Привет, мир!"}
+3. "write_to_file": Write text to a file.
+    Example: "write_to_file", args: {"file": "answer.txt", "text": "Hello, world!"}
 
-4. "read_file": прочитать текст из файла.
-    Пример: "read_file", args: {"file": "input.txt"}
+4. "read_file": Read text from a file.
+    Example: "read_file", args: {"file": "input.txt"}
 
-Составь небольшое задание для помощника, которое потребует последовательного выполнения двух команд из этого списка. 
-Постарайся, чтобы команды были связаны между собой по смыслу, и чтобы задание было понятно даже новичку.
+Create a short task for your assistant that requires the sequential execution of two commands from this list. 
+Try to make the commands logically connected and the task clear even for a beginner.
 
-Например: 
-1. Найди в Google "самые высокие горы мира". 
-2. Результат поиска запиши в файл "горы.txt".
+For example: 
+1. Search Google for "highest mountains in the world".
+2. Write the search results to a file "mountains.txt".
 """
     response = generate_response(prompt)
     print(f"Generated Prompt:\n{response}\n")
