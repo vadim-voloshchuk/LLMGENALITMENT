@@ -7,7 +7,10 @@ model = AutoModelForCausalLM.from_pretrained("google/gemma-7b")
 
 def generate_response(prompt):
     input_ids = tokenizer(prompt, return_tensors="pt")
-    outputs = model.generate(**input_ids)
+          
+    outputs = model.generate(**input_ids, max_new_tokens=512)  # измените значение при необходимости
+
+    
     response = tokenizer.decode(outputs[0])
     return response
 
