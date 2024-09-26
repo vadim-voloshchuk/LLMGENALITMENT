@@ -9,6 +9,7 @@ def generate_response(prompt):
     input_ids = tokenizer(prompt, return_tensors="pt")
     outputs = model.generate(**input_ids, max_new_tokens=256)
     response = tokenizer.decode(outputs[0])
+    print(outputs)
     return response
 
       
