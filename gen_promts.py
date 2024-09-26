@@ -3,10 +3,10 @@ import os
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 tokenizer = AutoTokenizer.from_pretrained("google/gemma-7b")
-model = AutoModelForCausalLM.from_pretrained("google/gemma-7b")
+model = AutoModelForCausalLM.from_pretrained("google/gemma-7b", device_map="auto", revision="float16")
 
 def generate_response(prompt):
-    input_ids = tokenizer(prompt, return_tensors="pt")
+    input_ids = tokenizer(prompt, return_tensors="pt").to("cuda")
     outputs = model.generate(**input_ids, max_new_tokens=256)
     response = tokenizer.decode(outputs[0])
     print(outputs)
