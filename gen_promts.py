@@ -7,12 +7,14 @@ model = AutoModelForCausalLM.from_pretrained("google/gemma-7b")
 
 def generate_response(prompt):
     input_ids = tokenizer(prompt, return_tensors="pt")
-    outputs = model.generate(**input_ids, max_new_tokens=512)
+    outputs = model.generate(**input_ids, max_new_tokens=256)
     response = tokenizer.decode(outputs[0])
     return response
 
+      
 def generate_prompt():
-    prompt = """User: Представь, что ты даешь задание ассистенту, который умеет выполнять следующие команды:
+    prompt = """User: Ты — старший разработчик, и даешь задание своему помощнику, который только учится программировать. 
+Помощник умеет выполнять следующие команды:
 1. Google Search: "google", args: "input": "<search>"
 2. Browse Website: "browse_website", args: "url": "<url>", "question": "<what_you_want_to_find_on_website>"
 3. Start GPT Agent: "start_agent", args: "name": "<name>", "task": "<short_task_desc>", "prompt": "<prompt>"
@@ -34,12 +36,14 @@ def generate_prompt():
 19. Do Nothing: "do_nothing", args:
 20. Task Complete (Shutdown): "task_complete", args: "reason": "<reason>"
 
-Сгенерируй пример такого задания, которое бы требовало от ассистента выполнить одну или несколько команд из списка. 
+Составь небольшое задание для помощника, которое потребует последовательного выполнения двух команд из этого списка. 
+Постарайся, чтобы команды были связаны между собой по смыслу, и чтобы задание было понятно даже новичку.
 """
     response = generate_response(prompt)
     print(f"Generated Prompt:\n{response}\n")
     return response
 
+    
 def main():
     if not os.path.exists("data"):
         os.makedirs("data")
